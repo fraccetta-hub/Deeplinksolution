@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Link Solutions LLC</title>
+  <meta name="description" content="Expert installation, maintenance, and repair services for submarine fiber-optic cable systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #1B7FE8;
+      --blue-dark: #1262C0;
+      --blue-deep: #0A1E3D;
+      --green: #4CBB5A;
+      --green-dark: #38A046;
+      --navy: #081524;
+      --navy-mid: #0D2040;
+      --white: #ffffff;
+      --gray-light: #F4F7FA;
+      --gray: #6B7C93;
+      --text: #1A2B3C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      transition: background 0.35s, box-shadow 0.35s;
+    }
+    #navbar.scrolled {
+      background: rgba(8, 21, 36, 0.97);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo img { height: 48px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ───────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('Images/Img2.png');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.35);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(8,21,36,0.7) 0%, rgba(27,127,232,0.15) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding: 0 5%;
+      margin-top: 72px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(76,187,90,0.15);
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--blue); }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 580px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.5);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 60px;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      gap: 48px;
+      z-index: 2;
+    }
+    .stat { border-left: 3px solid var(--green); padding-left: 16px; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SERVICES ───────────────────────────────── */
+    #services {
+      padding: 40px 5%;
+      background: var(--gray-light);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 36px 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(27,127,232,0.12), rgba(76,187,90,0.12));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .service-icon svg { width: 28px; height: 28px; }
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    #about {
+      padding: 40px 5%;
+      background: #fff;
+    }
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-images {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      height: 440px;
+      display: block;
+    }
+    .about-img-inset {
+      position: absolute;
+      bottom: -28px;
+      right: -28px;
+      width: 46%;
+      border-radius: 12px;
+      object-fit: cover;
+      height: 200px;
+      border: 4px solid #fff;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+    .about-badge {
+      position: absolute;
+      top: 28px;
+      left: -24px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      padding: 20px 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(27,127,232,0.4);
+      text-align: center;
+    }
+    .about-badge strong { display: block; font-size: 2rem; font-weight: 800; }
+    .about-badge span { font-size: 0.75rem; opacity: 0.85; line-height: 1.3; display: block; margin-top: 2px; }
+
+    .about-text .section-header { text-align: left; margin-bottom: 24px; }
+    .about-text p {
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .highlight-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .highlight-item span { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+
+    /* ── WHY US ─────────────────────────────────── */
+    #why {
+      padding: 40px 5%;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      background-image: url('Images/Img1.png');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+    #why::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(27,127,232,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #why .section-title { color: #fff; }
+    #why .section-sub { color: rgba(255,255,255,0.55); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 32px 24px;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .why-card:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-4px);
+    }
+    .why-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .why-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .why-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── GALLERY / SHIPS ────────────────────────── */
+    #gallery {
+      padding: 40px 5%;
+      background: var(--gray-light);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(8,21,36,0.85));
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    /* ── CONTACT ────────────────────────────────── */
+    #contact {
+      padding: 40px 5%;
+      background: #fff;
+    }
+    .contact-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .contact-info h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .contact-info p {
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-item-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, rgba(27,127,232,0.1), rgba(76,187,90,0.1));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 22px; height: 22px; }
+    .contact-item-label { font-size: 0.78rem; color: var(--gray); font-weight: 500; margin-bottom: 2px; }
+    .contact-item-value { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .contact-item-value a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .contact-item-value a:hover { color: var(--blue); }
+
+    /* Contact form */
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 12px 14px;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--gray-light);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(27,127,232,0.12);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .btn-send {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+    .btn-send:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      padding: 60px 5% 32px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand img { height: 52px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 320px; }
+    .footer-col h4 { color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--green); }
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.82rem;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .about-img-inset { display: none; }
+      .about-badge { display: none; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { bottom: 32px; }
+      .stat-num { font-size: 1.5rem; }
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(8,21,36,0.98);
+      padding: 24px 5%;
+      z-index: 99;
+      flex-direction: column;
+      gap: 20px;
+      backdrop-filter: blur(12px);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <img src="Images/Logo.png" alt="Deep Link Solutions" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+    <li><a href="#about" data-i18n="nav.about">About Us</a></li>
+    <li><a href="#why" data-i18n="nav.why">Why Us</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+  </div>
+  <div class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="toggleMobile()" data-i18n="nav.services">Services</a>
+  <a href="#about" onclick="toggleMobile()" data-i18n="nav.about">About Us</a>
+  <a href="#why" onclick="toggleMobile()" data-i18n="nav.why">Why Us</a>
+  <a href="#contact" onclick="toggleMobile()" data-i18n="nav.contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag" data-i18n="hero.tag">Submarine Cable Specialists</div>
+    <p class="hero-desc" data-i18n="hero.desc">
+      Expert installation, maintenance, and repair services for submarine fiber-optic cable systems, supporting the global networks that keep the world connected.
+    </p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div class="section-tag" data-i18n="services.tag">What We Do</div>
+    <h2 class="section-title" data-i18n="services.title">Submarine Fiber-Optic Cable Jointing</h2>
+  </div>
+  <div class="services-desc reveal" style="max-width:800px;margin:0 auto;text-align:center;">
+    <p data-i18n="services.desc" style="font-size:1.05rem;color:var(--gray);line-height:1.85;">
+      Specialized in submarine fiber-optic cable jointing, we deliver certified splicing, termination, and repair services for undersea telecommunications networks. With expertise in UJ, UQJ, and MJ technologies, we support installation and maintenance operations with precision, reliability, and technical excellence.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-images reveal">
+      <img class="about-img-main" src="Images/aboutus.png" alt="Technicians working on fiber-optic cable" />
+    </div>
+    <div class="about-text reveal">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="about.tag">About Us</div>
+        <h2 class="section-title" data-i18n="about.title">Built on Expertise.<br/>Driven by Precision.</h2>
+      </div>
+      <p data-i18n="about.p1">
+        Founded by a telecommunications professional with more than 14 years of experience in submarine fiber-optic networks, Deep Link Solutions brings extensive expertise in the installation, maintenance, and repair of critical undersea infrastructure.
+      </p>
+      <p data-i18n="about.p2">
+        Backed by a track record of supporting major international cable projects, we are committed to delivering precision, reliability, and technical excellence. Our experience, combined with a proactive approach to problem solving and collaboration, enables us to provide trusted support for the networks that connect the world.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-item"><div class="highlight-dot"></div><span data-i18n="about.h1">International Project Portfolio</span></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><span data-i18n="about.h2">Deep-Water Expertise</span></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><span data-i18n="about.h3">Precision Engineering</span></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><span data-i18n="about.h4">Collaborative Approach</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-header reveal">
+    <div class="section-tag" data-i18n="why.tag">Why Deep Link Solutions</div>
+    <h2 class="section-title" data-i18n="why.title">The Standard for Submarine Cable Excellence</h2>
+    <p class="section-sub" data-i18n="why.sub">Every project is underpinned by decades of field experience, rigorous standards, and a commitment to delivering results.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <h3 data-i18n="w1.title">Proven Track Record</h3>
+      <p data-i18n="w1.desc">Years of successful involvement in major international submarine cable projects across multiple ocean regions.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">02</div>
+      <h3 data-i18n="w2.title">Technical Excellence</h3>
+      <p data-i18n="w2.desc">Highly skilled personnel with specialist knowledge in fiber-optic splicing, underwater systems, and cable protection techniques.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">03</div>
+      <h3 data-i18n="w3.title">Reliable & Responsive</h3>
+      <p data-i18n="w3.desc">We understand the critical nature of submarine cable infrastructure and provide dependable, timely support when it matters most.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">04</div>
+      <h3 data-i18n="w4.title">Global Reach</h3>
+      <p data-i18n="w4.desc">Experience working across diverse maritime environments and jurisdictions, with the flexibility to deploy worldwide.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <div class="section-tag" data-i18n="contact.tag">Contact</div>
+      <h2 data-i18n="contact.title">Let's Talk About Your Project</h2>
+      <p data-i18n="contact.desc">Whether you need installation, maintenance, repair, or expert consulting, we're ready to help. Reach out to discuss your requirements.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label" data-i18n="contact.email_label">Email</div>
+            <div class="contact-item-value"><a href="mailto:Info@deeplinkllc.com">Info@deeplinkllc.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.55-.55a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-item-label" data-i18n="contact.phone_label">Phone</div>
+            <div class="contact-item-value"><a href="tel:+13075003187">+1 (307) 500-3187</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="Images/Logo.png" alt="Deep Link Solutions" />
+      <p data-i18n="footer.desc">Delivering expert installation, maintenance, and repair services for submarine fiber-optic cable systems, supporting the global networks that keep the world connected.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.nav_title">Navigation</h4>
+      <ul>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#about" data-i18n="nav.about">About Us</a></li>
+        <li><a href="#why" data-i18n="nav.why">Why Us</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.contact_title">Contact</h4>
+      <ul>
+        <li><a href="mailto:Info@deeplinkllc.com">Info@deeplinkllc.com</a></li>
+        <li><a href="tel:+13075003187">+1 (307) 500-3187</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.copy">© 2025 Deep Link Solutions LLC. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  /* ── i18n ─────────────────────────────────────── */
+  const translations = {
+    en: {
+      "nav.services": "Services",
+      "nav.about": "About Us",
+      "nav.why": "Why Us",
+      "nav.contact": "Contact",
+      "nav.cta": "Get in Touch",
+      "hero.tag": "Submarine Cable Specialists",
+      "hero.title": "Connecting the World <br/><span>Beneath the Surface</span>",
+      "hero.desc": "Expert installation, maintenance, and repair services for submarine fiber-optic cable systems, supporting the global networks that keep the world connected.",
+      "hero.cta1": "Explore Our Services",
+      "hero.cta2": "Contact Us",
+      "hero.stat1": "Years of Experience",
+      "hero.stat2": "Network Reach",
+      "hero.stat3": "Technical Support",
+      "services.tag": "What We Do",
+      "services.title": "Expert Services for Undersea Infrastructure",
+      "services.sub": "From initial cable lay to complex fault repair, we deliver precision and reliability at every depth.",
+      "s1.title": "Cable Installation",
+      "s1.desc": "Full-scope installation services for new submarine fiber-optic cable systems, from route survey and planning through to final deployment and commissioning.",
+      "s2.title": "System Maintenance",
+      "s2.desc": "Proactive and scheduled maintenance programs to ensure maximum uptime, signal integrity, and long-term performance of submarine cable networks.",
+      "s3.title": "Fault Repair",
+      "s3.desc": "Rapid response and precision repair of cable faults, including deep-water breaks and equipment failures, minimising downtime for critical global communications.",
+      "s4.title": "Technical Consulting",
+      "s4.desc": "Expert advisory services for cable project planning, risk assessment, and operational strategy, backed by over a decade of hands-on subsea experience.",
+      "s5.title": "Shore End Works",
+      "s5.desc": "Specialised installation and protection of cable shore ends and beach manhole sections, ensuring secure landings and compliance with international standards.",
+      "s6.title": "Quality Assurance",
+      "s6.desc": "Rigorous testing and inspection protocols at every project stage, ensuring that every cable system meets the highest technical and safety standards.",
+      "about.tag": "About Us",
+      "about.title": "Built on Expertise.<br/>Driven by Precision.",
+      "about.badge": "Years of<br/>Expert Service",
+      "about.p1": "Founded by a telecommunications professional with more than 14 years of experience in submarine fiber-optic networks, Deep Link Solutions brings extensive expertise in the installation, maintenance, and repair of critical undersea infrastructure.",
+      "about.p2": "Backed by a track record of supporting major international cable projects, we are committed to delivering precision, reliability, and technical excellence. Our experience, combined with a proactive approach to problem solving and collaboration, enables us to provide trusted support for the networks that connect the world.",
+      "about.h1": "International Project Portfolio",
+      "about.h2": "Deep-Water Expertise",
+      "about.h3": "Precision Engineering",
+      "about.h4": "Collaborative Approach",
+      "why.tag": "Why Deep Link Solutions",
+      "why.title": "The Standard for Submarine Cable Excellence",
+      "why.sub": "Every project is underpinned by decades of field experience, rigorous standards, and a commitment to delivering results.",
+      "w1.title": "Proven Track Record",
+      "w1.desc": "Years of successful involvement in major international submarine cable projects across multiple ocean regions.",
+      "w2.title": "Technical Excellence",
+      "w2.desc": "Highly skilled personnel with specialist knowledge in fiber-optic splicing, underwater systems, and cable protection techniques.",
+      "w3.title": "Reliable & Responsive",
+      "w3.desc": "We understand the critical nature of submarine cable infrastructure and provide dependable, timely support when it matters most.",
+      "w4.title": "Global Reach",
+      "w4.desc": "Experience working across diverse maritime environments and jurisdictions, with the flexibility to deploy worldwide.",
+      "gallery.tag": "Operations",
+      "gallery.title": "Working Where It Matters Most",
+      "gallery.c1": "Cable Laying Operations — Open Ocean",
+      "gallery.c2": "Maintenance Vessel — Ready for Deployment",
+      "contact.tag": "Contact",
+      "contact.title": "Let's Talk About Your Project",
+      "contact.desc": "Whether you need installation, maintenance, repair, or expert consulting, we're ready to help. Reach out to discuss your requirements.",
+      "contact.email_label": "Email",
+      "contact.phone_label": "Phone",
+      "contact.base_label": "Base of Operations",
+      "form.name": "Full Name",
+      "form.company": "Company",
+      "form.email": "Email Address",
+      "form.subject": "Subject",
+      "form.opt1": "Cable Installation",
+      "form.opt2": "Maintenance Services",
+      "form.opt3": "Fault Repair",
+      "form.opt4": "Technical Consulting",
+      "form.opt5": "General Inquiry",
+      "form.message": "Message",
+      "form.send": "Send Message",
+      "footer.desc": "Delivering expert installation, maintenance, and repair services for submarine fiber-optic cable systems, supporting the global networks that keep the world connected.",
+      "footer.nav_title": "Navigation",
+      "footer.contact_title": "Contact",
+      "footer.copy": "© 2025 Deep Link Solutions LLC. All rights reserved.",
+      "footer.tagline": "Connecting the World Beneath the Surface"
+    },
+    it: {
+      "nav.services": "Servizi",
+      "nav.about": "Chi Siamo",
+      "nav.why": "Perché Noi",
+      "nav.contact": "Contatti",
+      "nav.cta": "Contattaci",
+      "hero.tag": "Specialisti in Cavi Sottomarini",
+      "hero.title": "Connettere il Mondo —<br/><span>Sotto la Superficie</span>",
+      "hero.desc": "Servizi specializzati di installazione, manutenzione e riparazione di sistemi in fibra ottica sottomarina, a supporto delle reti globali che tengono il mondo connesso.",
+      "hero.cta1": "Scopri i Nostri Servizi",
+      "hero.cta2": "Contattaci",
+      "hero.stat1": "Anni di Esperienza",
+      "hero.stat2": "Portata Globale",
+      "hero.stat3": "Supporto Tecnico",
+      "services.tag": "Cosa Facciamo",
+      "services.title": "Servizi Specializzati per le Infrastrutture Sottomarine",
+      "services.sub": "Dalla posa iniziale del cavo alla riparazione di guasti complessi, offriamo precisione e affidabilità a ogni profondità.",
+      "s1.title": "Installazione Cavi",
+      "s1.desc": "Servizi di installazione completi per nuovi sistemi di cavi sottomarini in fibra ottica, dalla pianificazione del percorso fino alla messa in servizio.",
+      "s2.title": "Manutenzione dei Sistemi",
+      "s2.desc": "Programmi di manutenzione proattiva e programmata per garantire la massima disponibilità, l'integrità del segnale e le prestazioni a lungo termine.",
+      "s3.title": "Riparazione Guasti",
+      "s3.desc": "Risposta rapida e riparazione di precisione dei guasti ai cavi, compresi rotture in acque profonde e guasti alle apparecchiature.",
+      "s4.title": "Consulenza Tecnica",
+      "s4.desc": "Servizi di consulenza specializzata per la pianificazione di progetti, la valutazione dei rischi e la strategia operativa.",
+      "s5.title": "Lavori Shore End",
+      "s5.desc": "Installazione e protezione specializzata delle terminazioni a terra del cavo, garantendo approdi sicuri e conformità agli standard internazionali.",
+      "s6.title": "Controllo Qualità",
+      "s6.desc": "Protocolli rigorosi di test e ispezione in ogni fase del progetto, per garantire che ogni sistema di cavi soddisfi i più alti standard tecnici.",
+      "about.tag": "Chi Siamo",
+      "about.title": "Fondati sull'Esperienza.<br/>Guidati dalla Precisione.",
+      "about.badge": "Anni di<br/>Servizio Esperto",
+      "about.p1": "Fondata da un professionista delle telecomunicazioni con oltre 14 anni di esperienza nelle reti di fibra ottica sottomarina, Deep Link Solutions porta una vasta competenza nell'installazione, manutenzione e riparazione di infrastrutture sottomarine critiche.",
+      "about.p2": "Supportati da un solido track record di partecipazione a importanti progetti internazionali, siamo impegnati a fornire precisione, affidabilità ed eccellenza tecnica. La nostra esperienza, unita a un approccio proattivo alla risoluzione dei problemi e alla collaborazione, ci permette di fornire supporto affidabile alle reti che connettono il mondo.",
+      "about.h1": "Portfolio Internazionale",
+      "about.h2": "Competenze in Acque Profonde",
+      "about.h3": "Ingegneria di Precisione",
+      "about.h4": "Approccio Collaborativo",
+      "why.tag": "Perché Deep Link Solutions",
+      "why.title": "Lo Standard per l'Eccellenza nei Cavi Sottomarini",
+      "why.sub": "Ogni progetto è sostenuto da decenni di esperienza sul campo, standard rigorosi e impegno per il raggiungimento dei risultati.",
+      "w1.title": "Comprovata Esperienza",
+      "w1.desc": "Anni di partecipazione ad importanti progetti internazionali di cavi sottomarini in diverse regioni oceaniche.",
+      "w2.title": "Eccellenza Tecnica",
+      "w2.desc": "Personale altamente qualificato con conoscenze specialistiche nella giunzione di fibre ottiche e protezione dei cavi.",
+      "w3.title": "Affidabili e Reattivi",
+      "w3.desc": "Comprendiamo la natura critica delle infrastrutture di cavi sottomarini e forniamo supporto affidabile e tempestivo quando conta di più.",
+      "w4.title": "Portata Globale",
+      "w4.desc": "Esperienza in ambienti marittimi e giurisdizioni diverse, con la flessibilità di operare in tutto il mondo.",
+      "gallery.tag": "Operazioni",
+      "gallery.title": "Al Lavoro Dove Conta di Più",
+      "gallery.c1": "Operazioni di Posa Cavi — Oceano Aperto",
+      "gallery.c2": "Nave di Manutenzione — Pronta all'Intervento",
+      "contact.tag": "Contatti",
+      "contact.title": "Parliamo del Tuo Progetto",
+      "contact.desc": "Che tu abbia bisogno di installazione, manutenzione, riparazione o consulenza, siamo pronti ad aiutarti.",
+      "contact.email_label": "Email",
+      "contact.phone_label": "Telefono",
+      "contact.base_label": "Base Operativa",
+      "form.name": "Nome Completo",
+      "form.company": "Azienda",
+      "form.email": "Indirizzo Email",
+      "form.subject": "Oggetto",
+      "form.opt1": "Installazione Cavi",
+      "form.opt2": "Servizi di Manutenzione",
+      "form.opt3": "Riparazione Guasti",
+      "form.opt4": "Consulenza Tecnica",
+      "form.opt5": "Informazioni Generali",
+      "form.message": "Messaggio",
+      "form.send": "Invia Messaggio",
+      "footer.desc": "Servizi specializzati di installazione, manutenzione e riparazione di sistemi in fibra ottica sottomarina, a supporto delle reti globali che tengono il mondo connesso.",
+      "footer.nav_title": "Navigazione",
+      "footer.contact_title": "Contatti",
+      "footer.copy": "© 2025 Deep Link Solutions LLC. Tutti i diritti riservati.",
+      "footer.tagline": "Connettere il Mondo — Sotto la Superficie"
+    },
+    es: {
+      "nav.services": "Servicios",
+      "nav.about": "Quiénes Somos",
+      "nav.why": "Por Qué Nosotros",
+      "nav.contact": "Contacto",
+      "nav.cta": "Contáctanos",
+      "hero.tag": "Especialistas en Cables Submarinos",
+      "hero.title": "Conectando el Mundo —<br/><span>Bajo la Superficie</span>",
+      "hero.desc": "Servicios expertos de instalación, mantenimiento y reparación de sistemas de cables de fibra óptica submarinos, apoyando las redes globales que mantienen al mundo conectado.",
+      "hero.cta1": "Ver Nuestros Servicios",
+      "hero.cta2": "Contáctanos",
+      "hero.stat1": "Años de Experiencia",
+      "hero.stat2": "Alcance Global",
+      "hero.stat3": "Soporte Técnico",
+      "services.tag": "Lo Que Hacemos",
+      "services.title": "Servicios Expertos para Infraestructuras Submarinas",
+      "services.sub": "Desde la instalación inicial del cable hasta la reparación de averías complejas, entregamos precisión y fiabilidad a cada profundidad.",
+      "s1.title": "Instalación de Cables",
+      "s1.desc": "Servicios de instalación completos para nuevos sistemas de cables submarinos de fibra óptica, desde el estudio de la ruta hasta la puesta en marcha.",
+      "s2.title": "Mantenimiento de Sistemas",
+      "s2.desc": "Programas de mantenimiento proactivo y programado para garantizar el máximo tiempo de actividad e integridad de la señal.",
+      "s3.title": "Reparación de Averías",
+      "s3.desc": "Respuesta rápida y reparación de precisión de averías en cables, incluidas roturas en aguas profundas y fallos de equipos.",
+      "s4.title": "Consultoría Técnica",
+      "s4.desc": "Servicios de asesoramiento experto para la planificación de proyectos de cables, evaluación de riesgos y estrategia operativa.",
+      "s5.title": "Trabajos en Shore End",
+      "s5.desc": "Instalación y protección especializada de terminaciones terrestres y secciones de arqueta de playa, garantizando aterrizajes seguros.",
+      "s6.title": "Aseguramiento de Calidad",
+      "s6.desc": "Protocolos rigurosos de pruebas e inspección en cada etapa del proyecto, asegurando que cada sistema de cables cumpla los más altos estándares.",
+      "about.tag": "Quiénes Somos",
+      "about.title": "Construidos sobre la Experiencia.<br/>Impulsados por la Precisión.",
+      "about.badge": "Años de<br/>Servicio Experto",
+      "about.p1": "Fundada por un profesional de las telecomunicaciones con más de 14 años de experiencia en redes de fibra óptica submarina, Deep Link Solutions aporta una amplia experiencia en la instalación, mantenimiento y reparación de infraestructuras submarinas críticas.",
+      "about.p2": "Respaldados por un historial comprobado en importantes proyectos internacionales de cables, estamos comprometidos a ofrecer precisión, fiabilidad y excelencia técnica en cada proyecto.",
+      "about.h1": "Cartera de Proyectos Internacionales",
+      "about.h2": "Experiencia en Aguas Profundas",
+      "about.h3": "Ingeniería de Precisión",
+      "about.h4": "Enfoque Colaborativo",
+      "why.tag": "Por Qué Deep Link Solutions",
+      "why.title": "El Estándar de Excelencia en Cables Submarinos",
+      "why.sub": "Cada proyecto está respaldado por décadas de experiencia en campo, estándares rigurosos y compromiso con los resultados.",
+      "w1.title": "Historial Comprobado",
+      "w1.desc": "Años de participación exitosa en importantes proyectos internacionales de cables submarinos en múltiples regiones oceánicas.",
+      "w2.title": "Excelencia Técnica",
+      "w2.desc": "Personal altamente cualificado con conocimiento especializado en empalme de fibra óptica y técnicas de protección de cables.",
+      "w3.title": "Fiables y Receptivos",
+      "w3.desc": "Entendemos la naturaleza crítica de la infraestructura de cables submarinos y proporcionamos apoyo confiable y oportuno.",
+      "w4.title": "Alcance Global",
+      "w4.desc": "Experiencia trabajando en diversos entornos marítimos y jurisdicciones, con la flexibilidad de desplegarse en todo el mundo.",
+      "gallery.tag": "Operaciones",
+      "gallery.title": "Trabajando Donde Más Importa",
+      "gallery.c1": "Operaciones de Tendido de Cables — Mar Abierto",
+      "gallery.c2": "Buque de Mantenimiento — Listo para el Despliegue",
+      "contact.tag": "Contacto",
+      "contact.title": "Hablemos de Tu Proyecto",
+      "contact.desc": "Ya sea que necesites instalación, mantenimiento, reparación o consultoría experta, estamos listos para ayudarte.",
+      "contact.email_label": "Correo Electrónico",
+      "contact.phone_label": "Teléfono",
+      "contact.base_label": "Base de Operaciones",
+      "form.name": "Nombre Completo",
+      "form.company": "Empresa",
+      "form.email": "Correo Electrónico",
+      "form.subject": "Asunto",
+      "form.opt1": "Instalación de Cables",
+      "form.opt2": "Servicios de Mantenimiento",
+      "form.opt3": "Reparación de Averías",
+      "form.opt4": "Consultoría Técnica",
+      "form.opt5": "Consulta General",
+      "form.message": "Mensaje",
+      "form.send": "Enviar Mensaje",
+      "footer.desc": "Servicios expertos de instalación, mantenimiento y reparación de sistemas de cables de fibra óptica submarinos, apoyando las redes globales que mantienen al mundo conectado.",
+      "footer.nav_title": "Navegación",
+      "footer.contact_title": "Contacto",
+      "footer.copy": "© 2025 Deep Link Solutions LLC. Todos los derechos reservados.",
+      "footer.tagline": "Conectando el Mundo — Bajo la Superficie"
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+  }
+
+  /* ── NAVBAR SCROLL ─────────────────────────────── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ── MOBILE NAV ─────────────────────────────────── */
+  function toggleMobile() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  /* ── SCROLL REVEAL ──────────────────────────────── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── FORM SUBMIT ────────────────────────────────── */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    const labels = { en: 'Message Sent!', it: 'Messaggio Inviato!', es: '¡Mensaje Enviado!' };
+    btn.textContent = labels[currentLang] || 'Message Sent!';
+    btn.style.background = 'var(--green)';
+    setTimeout(() => {
+      btn.textContent = translations[currentLang]['form.send'];
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
